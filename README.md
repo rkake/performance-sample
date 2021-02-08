@@ -1,7 +1,7 @@
 # performance-sample
 パフォーマンス調査用サンプル
 
-パフォーマンス調査ガイド内で使用しているサンプルです。
+以下の「InterSystems パフォーマンス調査ガイド」内で使用しているサンプルです。
 
 https://www.intersystems.com/wp-content/uploads/sites/6/InterSystems_PerformanceGuide1_2014.1_V1.0.pdf
 
