@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2014.1.2 (Build 753U)" ts="2015-03-17 12:11:23">
+<Class name="ZTask.HistoryMonitorDailyDataPurge">
+<Super>%SYS.Task.Definition</Super>
+<TimeChanged>63628,43738</TimeChanged>
+<TimeCreated>63628,41005.199691</TimeCreated>
+
+<Property name="KeepDays">
+<Description>
+保持日数の指定</Description>
+<Type>%Integer</Type>
+<InitialExpression>7</InitialExpression>
+</Property>
+
+<Method name="OnTask">
+<Description><![CDATA[
+This method is responsible for executing the task.<br>
+At the scheduled time, the Task Manager creates an instance of this object,
+sets any property values using the stored "settings" for the task, and then
+invokes this method to execute the task.<br>
+In order to execute a real task, override this method in a subclass.]]></Description>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	#dim ex As %Exception.AbstractException
+	set return=$$$OK
+	try {
+		if $NUMBER(..KeepDays)="" {
+			throw $$$ERROR($$$GeneralError,"KeepDayの保持期限日数の指定に不適切文字が登録されました。値＝"_..KeepDays)
+		}
+		// Purge()の引数指定が　ODBC形式の日付指定のため、パラメータ値を算出
+		set deleteDate=$ZDATE(+$horolog-..KeepDays,3)
+		
+		set currentNS=$NAMESPACE
+		zn "%SYS"
+		// 指定日数より前のデータを消します
+		set st=##class(SYS.History.Daily).Purge(deleteDate)
+		zn currentNS
+		
+		// パージが成功するとパージした日数を返します。
+		// タスクを登録したネームスペース上の以下グローバルに日付単位に登録します。
+		if $NUMBER(st)'="" {
+			set ^ZHistoryPurgeLog($ZDATE($H,3),"DailyPurgeRecords")=st
+		}
+		else {
+			throw ##class(%Exception.General).%New("Purge()メソッドの戻り値に数値以外が戻りました：st= "_st)
+		}
+	}
+	catch ex{
+		set return=ex.AsStatus()
+		/* 必要であれば以下エラー処理の付け足し */
+	}
+	quit return
+]]></Implementation>
+</Method>
+</Class>
+</Export>

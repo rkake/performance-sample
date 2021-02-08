@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="ZTask.mgstat">
+<Super>%SYS.Task.Definition</Super>
+<TimeCreated>63595,61908.317554</TimeCreated>
+
+<Property name="mgstatDir">
+<Description>
+統計情報ログファイルディレクトリ名</Description>
+<Type>%String</Type>
+</Property>
+
+<Property name="SampleTime">
+<Description>
+収集秒数（10秒以上を設定してもmgstat実行時に10秒に引き下げられます）</Description>
+<Type>%Integer</Type>
+</Property>
+
+<Property name="NumberOfSamples">
+<Description>
+収集回数</Description>
+<Type>%Integer</Type>
+</Property>
+
+<Method name="OnTask">
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	#dim ex As %Exception.AbstractException
+	set return=$$$OK
+	try {
+		// 指定されたディレクトリ以下に日付時刻のファイルを作成する
+		set filename=##class(%File).NormalizeDirectory(..mgstatDir)_$ZSTRIP($ZDATETIME($H,8),"*P")_"mgstat.txt"
+		job ^mgstat(..SampleTime,..NumberOfSamples,filename)
+	}
+	catch ex{
+		set return=ex.AsStatus()
+	}
+	quit return
+]]></Implementation>
+</Method>
+</Class>
+</Export>

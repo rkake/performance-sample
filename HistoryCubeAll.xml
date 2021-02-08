@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2014.1.2 (Build 753U)" ts="2015-03-17 10:05:22">
+<Class name="HistoryCube.Daily">
+<Description>
+</Description>
+<Super>%DeepSee.CubeDefinition</Super>
+<TimeChanged>63601,62056.237408</TimeChanged>
+<TimeCreated>63601,42389.797467</TimeCreated>
+<DependsOn>SYS.History.Daily</DependsOn>
+
+<Parameter name="DOMAIN">
+</Parameter>
+
+<XData name="Cube">
+<Description>
+Cube definition from Architect.</Description>
+<XMLNamespace>http://www.intersystems.com/deepsee</XMLNamespace>
+<Data><![CDATA[
+<cube xmlns="http://www.intersystems.com/deepsee" name="DailyCube" displayName="パフォーマンス（日単位）統計" disabled="false" abstract="false" sourceClass="SYS.History.Daily" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0">
+  <dimension name="DateTime" displayName="時間別" disabled="false" hasAll="false" allCaption="All DateTime" allDisplayName="DateTime" sourceProperty="DateTime" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="Day" displayName="日単位" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="Hourly" displayName="時単位" disabled="false" timeFunction="HourNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;PhysReads&quot;,&quot;Max&quot;)" name="PhysReadsMax" displayName="物理読込（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;PhysWrites&quot;,&quot;Max&quot;)" name="PhysWritesMax" displayName="物理書込（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;GloRef&quot;,&quot;Max&quot;)" name="GloRefMax" displayName="グローバル参照（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;PhysReads&quot;,&quot;Avg&quot;)" name="PhysReadsAvg" displayName="物理読込（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;PhysWrites&quot;,&quot;Avg&quot;)" name="PhysWritesAvg" displayName="物理書込（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;GloRef&quot;,&quot;Avg&quot;)" name="GloRefAvg" displayName="グローバル参照（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Max&quot;)" name="RtnLoadMax" displayName="ルーチン読込保存（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Avg&quot;)" name="RtnLoadAvg" displayName="ルーチン読込保存（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Max&quot;)" name="WIJWritesMax" displayName="WIJ書込ブロック（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;WIJWrites&quot;,&quot;Avg&quot;)" name="WIJWritesAvg" displayName="WIJ書込ブロック（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;RtnLoadRem&quot;,&quot;Max&quot;)" name="RtnLoadRemMax" displayName="ルーチン読込保存リモート（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;RtnLoadRem&quot;,&quot;Avg&quot;)" name="RtnLoadRemAvg" displayName="ルーチン読込保存リモート（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Max&quot;)" name="ECPConnMax" displayName="ECPクライアント接続数（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Avg&quot;)" name="ECPConnAvg" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Max&quot;)" name="ECPBlockAddMax" displayName="ECPキャッシュブロック追加（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockAdd&quot;,&quot;Avg&quot;)" name="ECPBlockAddAvg" displayName="ECPキャッシュブロック追加（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockAdd&quot;,&quot;Max&quot;)" name="ObjLoadMax" displayName="オブジェクトロード（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ObjLoad&quot;,&quot;Avg&quot;)" name="ObjLoadAvg" displayName="オブジェクトロード（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeBuff&quot;,&quot;Max&quot;)" name="ECPBlockPurgeBuffMax" displayName="ECPキャッシュブロック削除（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeBuff" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeBuff&quot;,&quot;Avg&quot;)" name="ECPBlockPurgeBuffAvg" displayName="ECPキャッシュブロック削除（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeSvr" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeSvr&quot;,&quot;Max&quot;)" name="ECPBlockPurgeSvrMax" displayName="ECPキャッシュブロック削除（byDBSrv）最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeSvr" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeSvr&quot;,&quot;Avg&quot;)" name="ECPBlockPurgeSvrAvg" displayName="ECPキャッシュブロック削除（byDBSrv）平均" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;LicUsedLocal&quot;,&quot;Max&quot;)" name="LicUsedLocalMax" displayName="ローカルライセンス使用量（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;LicUsedLocal&quot;,&quot;Avg&quot;)" name="LicUsedLocalAvg" displayName="ローカルライセンス使用量（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CSPSession&quot;,&quot;Max&quot;)" name="CSPSessionMax" displayName="CSPセッション最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CSPSession&quot;,&quot;Avg&quot;)" name="CSPSessionAvg" displayName="CSPセッション数（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CPUIOwait&quot;,&quot;Max&quot;)" name="CPUIOwaitMax" displayName="CPUI/O待ち（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CPUIOwait&quot;,&quot;Avg&quot;)" name="CPUIOwaitAvg" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CPUIdle&quot;,&quot;Max&quot;)" name="CPUIdleMax" displayName="CPUIdle最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Daily&quot;,&quot;Sys&quot;,&quot;CPUIdle&quot;,&quot;Avg&quot;)" name="CPUIdleAvg" displayName="CPUIdle（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+
+  <calculatedMember name="CashEfficiencyAvg" displayName="キャッシュ効率（平均）" disabled="false" dimension="Measures" valueExpression="[MEASURES].[GloRefAvg]/([MEASURES].[PhysReadsAvg] + [MEASURES].[PhysWritesAvg])" hidden="false"></calculatedMember>
+  <calculatedMember name="CashEfficiencyMax" displayName="キャッシュ効率（最大）" disabled="false" dimension="Measures" valueExpression="[MEASURES].[GloRefMax]/([MEASURES].[PhysReadsMax] + [MEASURES].[PhysWritesMax])" hidden="false"></calculatedMember>
+  <listing name="DB_Info_Max" disabled="false" listingType="table" sql="select  DateTime,Daily_DB-&gt;element_key,Daily_DB-&gt;DB_FileSize,Daily_DB-&gt;DB_FreeSpace from $$$SOURCE WHERE $$$RESTRICT"></listing>
+</cube>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HistoryCube.Hourly">
+<Description>
+</Description>
+<Super>%DeepSee.CubeDefinition</Super>
+<TimeChanged>63601,63725.315372</TimeChanged>
+<TimeCreated>63601,42389.797467</TimeCreated>
+<DependsOn>SYS.History.Hourly</DependsOn>
+
+<Parameter name="DOMAIN"/>
+
+<XData name="Cube">
+<Description>
+Cube definition from Architect.</Description>
+<XMLNamespace>http://www.intersystems.com/deepsee</XMLNamespace>
+<Data><![CDATA[
+<cube xmlns="http://www.intersystems.com/deepsee" name="HourlyCube" displayName="パフォーマンス（時単位）統計" disabled="false" abstract="false" sourceClass="SYS.History.Hourly" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0">
+  <dimension name="DateTime" displayName="時間別" disabled="false" hasAll="false" allCaption="All DateTime" allDisplayName="DateTime" sourceProperty="DateTime" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="Day" displayName="日単位" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="Hourly" displayName="時単位" disabled="false" timeFunction="HourNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;PhysReads&quot;,&quot;Max&quot;)" name="PhysReadsMax" displayName="物理読込（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;PhysWrites&quot;,&quot;Max&quot;)" name="PhysWritesMax" displayName="物理書込（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;GloRef&quot;,&quot;Max&quot;)" name="GloRefMax" displayName="グローバル参照（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;PhysReads&quot;,&quot;Avg&quot;)" name="PhysReadsAvg" displayName="物理読込（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;PhysWrites&quot;,&quot;Avg&quot;)" name="PhysWritesAvg" displayName="物理書込（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;GloRef&quot;,&quot;Avg&quot;)" name="GloRefAvg" displayName="グローバル参照（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Max&quot;)" name="RtnLoadMax" displayName="ルーチン読込保存（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Avg&quot;)" name="RtnLoadAvg" displayName="ルーチン読込保存（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;RtnLoad&quot;,&quot;Max&quot;)" name="WIJWritesMax" displayName="WIJ書込ブロック（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;WIJWrites&quot;,&quot;Avg&quot;)" name="WIJWritesAvg" displayName="WIJ書込ブロック（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;RtnLoadRem&quot;,&quot;Max&quot;)" name="RtnLoadRemMax" displayName="ルーチン読込保存リモート（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;RtnLoadRem&quot;,&quot;Avg&quot;)" name="RtnLoadRemAvg" displayName="ルーチン読込保存リモート（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Max&quot;)" name="ECPConnMax" displayName="ECPクライアント接続数（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Avg&quot;)" name="ECPConnAvg" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPConn&quot;,&quot;Max&quot;)" name="ECPBlockAddMax" displayName="ECPキャッシュブロック追加（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockAdd&quot;,&quot;Avg&quot;)" name="ECPBlockAddAvg" displayName="ECPキャッシュブロック追加（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockAdd&quot;,&quot;Max&quot;)" name="ObjLoadMax" displayName="オブジェクトロード（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ObjLoad&quot;,&quot;Avg&quot;)" name="ObjLoadAvg" displayName="オブジェクトロード（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeBuff&quot;,&quot;Max&quot;)" name="ECPBlockPurgeBuffMax" displayName="ECPキャッシュブロック削除（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeBuff" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeBuff&quot;,&quot;Avg&quot;)" name="ECPBlockPurgeBuffAvg" displayName="ECPキャッシュブロック削除（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeSvr" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeSvr&quot;,&quot;Max&quot;)" name="ECPBlockPurgeSvrMax" displayName="ECPキャッシュブロック削除（byDBSrv）最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeSvr" sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Perf&quot;,&quot;ECPBlockPurgeSvr&quot;,&quot;Avg&quot;)" name="ECPBlockPurgeSvrAvg" displayName="ECPキャッシュブロック削除（byDBSrv）平均" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;LicUsedLocal&quot;,&quot;Max&quot;)" name="LicUsedLocalMax" displayName="ローカルライセンス使用量（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;LicUsedLocal&quot;,&quot;Avg&quot;)" name="LicUsedLocalAvg" displayName="ローカルライセンス使用量（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CSPSession&quot;,&quot;Max&quot;)" name="CSPSessionMax" displayName="CSPセッション最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CSPSession&quot;,&quot;Avg&quot;)" name="CSPSessionAvg" displayName="CSPセッション数（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CPUIOwait&quot;,&quot;Max&quot;)" name="CPUIOwaitMax" displayName="CPUI/O待ち（最大）" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CPUIOwait&quot;,&quot;Avg&quot;)" name="CPUIOwaitAvg" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CPUIdle&quot;,&quot;Max&quot;)" name="CPUIdleMax" displayName="CPUIdle最大" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="##class(HistoryCube.Utils).GetValue(%source.%ID,&quot;SYS.History.Hourly&quot;,&quot;Sys&quot;,&quot;CPUIdle&quot;,&quot;Avg&quot;)" name="CPUIdleAvg" displayName="CPUIdle（平均）" disabled="false" aggregate="AVG" type="number" hidden="false" searchable="false"></measure>
+  <calculatedMember name="CashEfficiencyAvg" displayName="キャッシュ効率（平均）" disabled="false" dimension="Measures" valueExpression="[MEASURES].[GloRefAvg]/([MEASURES].[PhysReadsAvg] + [MEASURES].[PhysWritesAvg])" hidden="false"></calculatedMember>
+  <calculatedMember name="CashEfficiencyMax" displayName="キャッシュ効率（最大）" disabled="false" dimension="Measures" valueExpression="[MEASURES].[GloRefMax]/([MEASURES].[PhysReadsMax] + [MEASURES].[PhysWritesMax])" hidden="false"></calculatedMember>
+  <listing name="DB_Info_Max" disabled="false" listingType="table" sql="select  DateTime,Hourly_DB-&gt;element_key,Max(Hourly_DB-&gt;DB_FileSize) As MaxFileSize,Min(Hourly_DB-&gt;DB_FreeSpace) As MinFreeSpace from $$$SOURCE WHERE $$$RESTRICT
+group by Hourly_DB-&gt;element_key"></listing>
+</cube>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HistoryCube.PerfData">
+<Description>
+</Description>
+<Super>%DeepSee.CubeDefinition</Super>
+<TimeChanged>63627,53266.181344</TimeChanged>
+<TimeCreated>63599,53114.50632</TimeCreated>
+<DependsOn>SYS.History.PerfData</DependsOn>
+
+<Parameter name="DOMAIN"/>
+
+<XData name="Cube">
+<Description>
+Cube definition from Architect.</Description>
+<XMLNamespace>http://www.intersystems.com/deepsee</XMLNamespace>
+<Data><![CDATA[
+<cube xmlns="http://www.intersystems.com/deepsee" name="HistoryPerfData" displayName="パフォーマンスデータ（間隔）" disabled="false" abstract="false" sourceClass="SYS.History.PerfData" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0">
+  <dimension name="ZTIMERange" displayName="時間範囲" disabled="false" hasAll="false" allCaption="All ZTIME1" allDisplayName="ZTIME1" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="ZTIME" name="RANGE1" displayName="深夜/早朝/午前/日中/夕方" description="22-3/3-8/8-12/12-17/17-22" disabled="false" list="false" rangeExpression="[0,10800):深夜（0時～3時）;[79200,86400):深夜（22時～0時）;[10800,28800):早朝;[28800,43200):午前;[43200,61200):日中;[61200,79200):夕方;" useDisplayValue="false" useAsFilter="true">
+      </level>
+      <level sourceExpression="$PIECE($ZTIME($SELECT(%source.ZTIME=86400:0,1:%source.ZTIME)),&quot;:&quot;,1)" name="Hourly" displayName="時単位" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level sourceExpression="$PIECE($ZTIME($SELECT(%source.ZTIME=86400:0,1:%source.ZTIME)),&quot;:&quot;,2)" name="Minites" displayName="分単位" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="DateTime" displayName="時間別" disabled="false" hasAll="false" allCaption="All DateTime" allDisplayName="DateTime" sourceProperty="DateTime" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="Day" displayName="日単位" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="Hourly" displayName="時単位" disabled="false" timeFunction="HourNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="Minite" displayName="分単位" disabled="false" timeFunction="MinuteNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <measure sourceProperty="Perf.RtnLoad" name="RtnLoad" displayName="ルーチン読込と保存" disabled="false" aggregate="MAX" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.JrnBlock" name="JrnBlock" displayName="ジャーナルブロック（書込）" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.WIJWrites" name="WIJWrites" displayName="WIJ書込ブロック" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ObjLoad" name="ObjLoad" displayName="オブジェクトロード数" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPConn" name="ECPConn" displayName="ECPクライアント接続数" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockAdd" name="ECPBlockAdd" displayName="ECPAppキャッシュブロック追加" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeBuff" name="ECPBlockPurgeBuff" displayName="ECPAppキャッシュブロック削除" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.ECPBlockPurgeSvr" name="ECPBlockPurgeSvr" displayName="ECPAppキャッシュブロック削除（byDBSrv）" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.RtnLoadRem" name="RtnLoadRem" displayName="ルーチン読込保存（リモート）" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.PhysReads" name="PhysReads" displayName="物理読込" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.PhysWrites" name="PhysWrites" displayName="物理書込" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="Perf.GloRef" name="GloRef" displayName="グローバル参照（全体）" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <calculatedMember name="CachEfficiency" displayName="キャッシュ効率" disabled="false" dimension="Measures" valueExpression="[MEASURES].[GloRef]/([MEASURES].[PhysReads] + [MEASURES].[PhysWrites]) " hidden="false"></calculatedMember>
+</cube>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HistoryCube.Utils">
+<TimeChanged>63601,59961.665555</TimeChanged>
+<TimeCreated>63599,59690.70632</TimeCreated>
+
+<Method name="GetElementKey">
+<Description><![CDATA[
+ディメンジョン用:Hourly/Daily内Arrayの参照先オブジェクトのelementKeyを取得する
+<br>指定例：　##class(HistoryCube.Utils).GetElemenetKey(%source.%ID,"SYS.History.Hourly","Perf","PhysReads","Max")]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>id:%String,ClassName:%String,arrayProp:%String,PropName:%String,Flg:%String</FormalSpec>
+<ReturnType>%List</ReturnType>
+<Implementation><![CDATA[
+	set retVal=""
+	try {f
+		set obj=$classmethod(ClassName,"%OpenId",id)
+		if $get(obj)="" quit
+		set arrayObj=$property(obj,arrayProp)
+		for i=1:1:arrayObj.Count() {
+			set val=arrayObj.GetNext(.elementKey)
+			if elementKey="" quit
+			set $LIST(retVal,i)=elementKey
+		}
+	}
+	catch ex {
+		//write ex.Name,"-",ex.Location,!
+	}
+	quit retVal
+]]></Implementation>
+</Method>
+
+<Method name="GetValue">
+<Description><![CDATA[
+メジャー用:Hourly/Daily内Arrayの参照先オブジェクトの値を取得する
+<br>指定例：　##class(HistoryCube.Utils).GetValue(%source.%ID,"SYS.History.Hourly","Perf","PhysReads","Max")]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>id:%String,ClassName:%String,arrayProp:%String,PropName:%String,Flg:%String</FormalSpec>
+<ReturnType>%Integer</ReturnType>
+<Implementation><![CDATA[
+	set retVal=0
+	try {
+		set obj=$classmethod(ClassName,"%OpenId",id)
+		set arrayObj=$property(obj,arrayProp)
+		for i=1:1:arrayObj.Count() {
+			set serialObj=arrayObj.GetNext(.elementKey)
+			if elementKey="" quit
+			if elementKey=Flg {
+				set retVal=$property(serialObj,PropName)
+			}
+		}
+	}
+	catch ex {
+		//write ex.Name,"-",ex.Location,!
+	}
+	quit retVal
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Document name="DailyGloStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="DailyGloStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-03-16T02:39:39.128Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="DailyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="日単位" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[PhysReadsMax]" key="" value="" text="物理読込（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysWritesMax]" key="" value="" text="物理書込（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[GloRefMax]" key="" value="" text="グローバル参照（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[MEASURES].[CASHEFFICIENCYMAX]" key="" value="" text="キャッシュ効率（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="DailyHistory.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="DailyHistory" folderName="" title="履歴モニタ：日次データ統計情報" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-02-24T03:05:45.618Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="1" snapTo="true" snapGrid="true" gridRows="20" gridCols="20" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="DailyGloStat" type="pivot" subtype="pivot" subtypeClass="lineChart" title="日次：グローバル統計情報" dataSource="DailyGloStat.pivot" dataLink="" drillDownDataSource="DailyHistory.dashboard" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="10" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">0</property>
+  </widget>
+  <widget name="DailyGloStatGlaf" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="日次：グローバル統計グラフ" dataSource="DailyGloStat.pivot" dataLink="DailyGloStat" drillDownDataSource="DailyHistory.dashboard" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="10" colSpanL="10" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+    <property name="analyzer">0</property>
+    <property name="drillDown">0</property>
+  </widget>
+  <widget name="日次：ルーチンECP統計情報" type="pivot" subtype="pivot" subtypeClass="lineChart" title="" dataSource="DailyRtnECPStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="7" homeColL="0" colSpanL="10" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="日次：ルーチンECP統計グラフ" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="日次：ルーチンECP統計グラフ" dataSource="DailyRtnECPStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="7" homeColL="10" colSpanL="10" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="日次：その他統計情報" type="pivot" subtype="pivot" subtypeClass="lineChart" title="日次：その他統計情報" dataSource="DailyOtherStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="14" homeColL="0" colSpanL="10" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="日次：その他統計情報グラフ" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="日次：その他統計情報グラフ" dataSource="DailyOtherStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="14" homeColL="10" colSpanL="10" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="*" targetProperty="[DateTime].[H1].[Day]" location="dashboard" type="auto" controlClass="" label="日単位" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+  </widget>
+</dashboard>
+</Document>
+
+<Document name="DailyOtherStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="DailyOtherStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-03-16T02:40:30.094Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="DailyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="日単位" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[CPUIdleMax]" key="" value="" text="CPUIdle最大" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[CPUIOwaitMax]" key="" value="" text="CPUI/O待ち（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[CSPSessionMax]" key="" value="" text="CSPセッション最大" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[LicUsedLocalMax]" key="" value="" text="ローカルライセンス使用量（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="DailyRtnECPStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="DailyRtnECPStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-03-16T02:41:55.394Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="DailyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="日単位" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[RtnLoadMax]" key="" value="" text="ルーチン読込保存（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ObjLoadMax]" key="" value="" text="オブジェクトロード（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPConnMax]" key="" value="" text="ECPクライアント接続数（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPBlockAddMax]" key="" value="" text="ECPキャッシュブロック追加（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPBlockPurgeBuffMax]" key="" value="" text="ECPキャッシュブロック削除（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="GloRef.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="GloRef" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-02-16T07:40:54.287Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HistoryPerfData" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="時間別" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[GloRef]" key="" value="" text="グローバル参照（全体）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysReads]" key="" value="" text="物理読込" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysWrites]" key="" value="" text="物理書込" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[MEASURES].[CACHEFFICIENCY]" key="" value="" text="キャッシュ効率" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="GloStatMinites.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="GloStatMinites" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-03-16T05:15:13.998Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HistoryPerfData" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[ZTIMERange].[H1].[RANGE1].Members" key="" value="" text="時間範囲" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[GloRef]" key="" value="" text="グローバル参照（全体）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysReads]" key="" value="" text="物理読込" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysWrites]" key="" value="" text="物理書込" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[MEASURES].[CACHEFFICIENCY]" key="" value="" text="キャッシュ効率" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="HourlyDailyHistoryStat.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="HourlyDailyHistoryStat" folderName="" title="履歴モニタ：毎時データ" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-02-24T01:16:01.643Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="20" gridCols="20" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="GloPivot1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="グローバル統計情報" dataSource="HourlyGloStat.pivot" dataLink="" drillDownDataSource="HourlyDailyHistoryStat.dashboard" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="8" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="RtnPivot1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="ルーチン／ECP統計情報" dataSource="HourlyRtnECPStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="0" colSpanL="8" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="OtherPivot1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="CPU／CSPセッション／ライセンス使用量" dataSource="HourlyOtherStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="12" homeColL="0" colSpanL="8" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="GloChart1" type="pivot" subtype="comboChart" subtypeClass="comboChart" title="グローバル統計グラフ" dataSource="HourlyGloStat.pivot" dataLink="GloPivot1" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="8" colSpanL="9" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <override name="comboChart">{legendVisible:'false',markersVisible:true,xAxis:{majorGridLines:false,_type:'axis'},yAxisList:[{_type:'axis'}],seriesTypes:'bar,bar,line',_type:'comboChart'}</override>
+  </widget>
+  <widget name="RtnECPChart1" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="ルーチン／ECP統計グラフ" dataSource="HourlyRtnECPStat.pivot" dataLink="RtnPivot1" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="8" colSpanL="9" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <override name="lineChart">{legendVisible:'false',markersVisible:true,xAxis:{majorGridLines:false,_type:'axis'},yAxisList:[{_type:'axis'}],_type:'lineChart'}</override>
+  </widget>
+  <widget name="OtherStatChart1" type="pivot" subtype="columnChart3D" subtypeClass="barChart" title="CPU／CSPセッション／ライセンス使用量グラフ" dataSource="HourlyOtherStat.pivot" dataLink="OtherPivot1" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="12" homeColL="8" colSpanL="9" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <override name="barChart">{appearance:'3D',legendVisible:'false',xAxis:{majorGridLines:false,_type:'axis'},yAxisList:[{_type:'axis'}],_type:'barChart'}</override>
+  </widget>
+</dashboard>
+</Document>
+
+<Document name="HourlyGloStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="HourlyGloStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-02-24T01:04:57.874Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HourlyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="時間別" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[PhysReadsMax]" key="" value="" text="物理読込（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[PhysWritesMax]" key="" value="" text="物理書込（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[GloRefMax]" key="" value="" text="グローバル参照（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[MEASURES].[CASHEFFICIENCYMAX]" key="" value="" text="キャッシュ効率（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="HourlyOtherStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="HourlyOtherStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-02-24T01:08:33.795Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HourlyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="時間別" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[CPUIdleMax]" key="" value="" text="CPUIdle最大" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[CPUIOwaitMax]" key="" value="" text="CPUI/O待ち（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[CSPSessionMax]" key="" value="" text="CSPセッション最大" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[LicUsedLocalMax]" key="" value="" text="ローカルライセンス使用量（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="HourlyRtnECPStat.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="HourlyRtnECPStat" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-02-24T01:07:49.288Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HourlyCube" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="時間別" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[RtnLoadMax]" key="" value="" text="ルーチン読込保存（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ObjLoadMax]" key="" value="" text="オブジェクトロード（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPConnMax]" key="" value="" text="ECPクライアント接続数（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPBlockAddMax]" key="" value="" text="ECPキャッシュブロック追加（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ECPBlockPurgeBuffMax]" key="" value="" text="ECPキャッシュブロック削除（最大）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="RtnObjLoads.pivot.DFI">
+<pivot xmlns="http://www.intersystems.com/deepsee/library" name="RtnObjLoads" folderName="" title="" description="" keywords="" owner="" shared="true" public="false" locked="false" resource="" timeCreated="2015-03-16T04:38:19.5Z" createdBy="UnknownUser" category="" bookCover="" mdx="" cellWidth="120" columnHeaderStyle="" rowHeaderStyle="" cellStyle="" rowLabelSpan="true" columnLabelSpan="true" cellHeight="22" showEmptyRows="false" showEmptyColumns="false" cubeName="HistoryPerfData" caption="" listing="" listingRows="" showStatus="true" pageSize="100" colorScale="" rowTotals="false" columnTotals="false" rowTotalAgg="sum" columnTotalAgg="sum" rowTotalSource="page" showZebra="false" showRowCaption="true" printTitle="" printSubtitle="" printSubtitleOn="" showUser="" printPageSize="" printOrientation="1" printMarginTop="" printMarginLeft="" printMarginRight="" printMarginBottom="" printLabelWidth="" printCellWidth="" autoExecute="true" manualMode="false" userMDX="" chartMarginTop="" chartMarginLeft="" chartMarginRight="" chartMarginBottom="" maxRows="" borderLeftCell="" borderRightCell="" borderTopCell="" borderBottomCell="" borderLeftCol="" borderRightCol="" borderTopCol="" borderBottomCol="" borderLeftRow="" borderRightRow="" borderTopRow="" borderBottomRow="" showFilters="" showListingFilters="" showDate="" listingFontSize="" showZebraStripes="" filterTableStyle="" filterTableCaptionStyle="" filterTableItemStyle="" nowDisplayFormat="" measureLocation="columns" backgroundImage="" backgroundOpacity=".12">
+  <rowAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowAxisOptions>
+  <columnAxisOptions spec="" key="" value="" text="" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </columnAxisOptions>
+  <rowLevel spec="[DateTime].[H1].[Day].Members" key="" value="" text="時間別" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </rowLevel>
+  <measure spec="[Measures].[RtnLoad]" key="" value="" text="ルーチン読込と保存" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[RtnLoadRem]" key="" value="" text="ルーチン読込保存（リモート）" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+  <measure spec="[Measures].[ObjLoad]" key="" value="" text="オブジェクトロード数" headEnabled="false" headCount="" filterEnabled="false" filterExpression="" orderEnabled="false" orderExpression="" orderDirection="BDESC" aggEnabled="false" aggFunction="" aggFunctionParm="" levelCaption="" levelFormat="" levelSummary="" levelType="" drillLevel="0" advanced="false" levelStyle="" levelHeaderStyle="" suppress8020="false" drilldownSpec="" enabled="true">
+  </measure>
+</pivot>
+</Document>
+
+<Document name="SystemPerfomance.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="SystemPerfomance" folderName="" title="履歴モニタ：システムの状態確認" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-02-16T07:41:40.838Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="20" gridCols="20" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="間隔データ：グローバル統計" type="pivot" subtype="pivot" subtypeClass="lineChart" title="間隔データ：グローバル統計" dataSource="GloRef.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="7" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="間隔データ：グローバル統計グラフ" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="間隔データ：グローバル統計グラフ" dataSource="GloRef.pivot" dataLink="間隔データ：グローバル統計" drillDownDataSource="W1" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="7" colSpanL="11" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="drillDown">0</property>
+  </widget>
+  <widget name="間隔データ：ルーチン読み込みと保存とオブジェクトロード" type="pivot" subtype="pivot" subtypeClass="lineChart" title="間隔データ：ルーチン読み込みと保存とオブジェクトロード" dataSource="RtnObjLoads.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="0" colSpanL="7" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <property name="analyzer">1</property>
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="間隔データ：ルーチン読み込みと保存とオブジェクトロードグラフ" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="" dataSource="RtnObjLoads.pivot" dataLink="間隔データ：ルーチン読み込みと保存とオブジェクトロード" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="7" colSpanL="11" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="間隔データ：グローバル統計（時間単位）" type="pivot" subtype="pivot" subtypeClass="lineChart" title="間隔データ：グローバル統計（時間帯別）" dataSource="GloStatMinites.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="12" homeColL="0" colSpanL="7" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="" targetProperty="[DateTime].[H1].[Day]" location="widget" type="auto" controlClass="" label="日単位" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <property name="drillDown">1</property>
+  </widget>
+  <widget name="間隔データ：グローバル統計（時間単位）グラフ" type="pivot" subtype="lineChartMarkers" subtypeClass="lineChart" title="間隔データ；グローバル統計（時間帯別）グラフ" dataSource="GloStatMinites.pivot" dataLink="間隔データ：グローバル統計（時間単位）" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="12" homeColL="7" colSpanL="11" rowSpanL="7" showToolbar="true" theme="" dataColorList="">
+  </widget>
+</dashboard>
+</Document></Export>

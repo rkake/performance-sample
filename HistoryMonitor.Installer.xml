@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2014.1.2 (Build 753U)" ts="2015-03-17 11:20:22">
+<Class name="HistoryMonitor.Installer">
+<Description>
+
+　履歴モニタの収集データを任意ネームスペース上のDeepSeeを利用して分析結果を参照するために必要な設定</Description>
+<IncludeCode>%occInclude</IncludeCode>
+<TimeChanged>63628,40810.542522</TimeChanged>
+<TimeCreated>63621,41755.258077</TimeCreated>
+
+<XData name="HistoryMonitorSettings">
+<XMLNamespace>INSTALLER</XMLNamespace>
+<Data><![CDATA[
+<Manifest>
+	<Namespace Name="${NAMESPACE}" Create="no">
+	<!--
+	<Configuration >
+	<Database Dir="${MGRDIR}${NAMESPACE}" Create="no"/>
+	<ClassMapping Package="SYS.History" From="CACHESYS"/>
+	<GlobalMapping Global="SYS.History*" From="CACHESYS"/>
+	<GlobalMapping Global="SYS.History.*" From="CACHESYS"/>
+	<RoutineMapping Routines="MON*" From="CACHESYS"/>
+	</Configuration>
+	-->
+	<Import Flags="cukb" File="${IMPORTFILE}" />
+	
+	<Invoke Class="%DeepSee.Utils" Method="%BuildCube" Return="">
+	<Arg Value="HistoryPerfData"/>
+	</Invoke>
+	<Invoke Class="%DeepSee.Utils" Method="%BuildCube" Return="">
+	<Arg Value="DailyCube"/>
+	</Invoke>
+	<Invoke Class="%DeepSee.Utils" Method="%BuildCube" Return="">
+	<Arg Value="HourlyCube"/>
+	</Invoke>
+	
+	</Namespace>
+	</Manifest>
+]]></Data>
+</XData>
+
+<Method name="RunInstall">
+<Description><![CDATA[
+
+●インストーラーの実行
+<br>　インストーラー実行の前に、サンプルXMLファイルを任意ディレクトリに配置します。
+<br>　引数1：　サンプルXMLファイルを配置したディレクトリフルパス
+<br>　引数2：　インストールしたいネームスペース名（デフォルトはUSER）
+<br>　このインストールよりインポートされるクラス定義は　HistoryCubeパッケージ以下クラスのみです
+<br>　データはキューブの構築によりできるDeepSee用データのみで履歴モニタデータは
+<br>　%SYS上のSYS.History*　のデータをグローバルマッピングして利用しています。
+<br>　※キューブの種類は以下のとおりです。
+<br>　　　　日次：DailyCubeキューブ（HistoryCube.Dailyクラス）
+<br>　　　　毎時：HourlyCube　（HistoryCube.Hourlyクラス）
+<br>　　　　間隔（パフォーマンス）：HistoryPerfData（HistoryCube.PerfDataクラス）
+<br>　　　　間隔（システム使用）　：HistorySystemData （HistoryCube.SysDataクラス）
+<br>
+<br>　画面の確認はダッシュボード画面を利用します。
+]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>importdir:%String,ns:%String="USER"</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	#dim ex As %Exception.AbstractException
+	set st=$$$OK
+	try {
+		set var("NAMESPACE")=ns
+		if $get(importdir)="" {
+			throw ##class(%Exception.General).%New("インポート用ファイルを配置したディレクトリをフルパスで指定してください")
+		}
+		set importfile=##class(%File).NormalizeDirectory(importdir)_"HistoryCubeAll.xml"
+		if ##class(%File).Exists(importfile)=0 {
+			throw ##class(%Exception.General).%New("指定したディレクトリが不正です："_importdir)
+		}
+		set var("IMPORTFILE")=importfile
+		
+		// *****************************************************
+		// マッピングの作成 （将来はInstallerで実装予定）
+		// *****************************************************
+		set currentNS=$NAMESPACE
+		zn "%SYS"
+
+		set Prop("Database")="CACHESYS"  // 共通情報
+
+		// <Global mapping 1>
+		set gloName="SYS.History*"
+		// 定義作成	
+		set st=##Class(Config.MapGlobals).Create(ns,gloName,.Prop)
+		$$$THROWONERROR(ex,st)
+		
+		// <Global mapping 2>
+		set gloName="SYS.History.*"
+		// 定義作成	
+		set st=##Class(Config.MapGlobals).Create(ns,gloName,.Prop)
+		$$$THROWONERROR(ex,st)
+		
+		// <Routine mqapping>
+		set rouName="MON*"		
+		// 定義作成	
+		set st=##Class(Config.MapRoutines).Create(ns,rouName,.Prop)
+		$$$THROWONERROR(ex,st)
+
+		// <Package mapping>
+		set pacName="SYS.History"
+		// 定義作成	
+		set st=##Class(Config.MapPackages).Create(ns,pacName,.Prop)
+		$$$THROWONERROR(ex,st)
+				
+		zn currentNS
+		
+		// インストーラー実行
+		do ..setup(.var)
+	}
+	catch ex {
+		set st=ex.AsStatus() 
+	}
+	quit st
+]]></Implementation>
+</Method>
+
+<Method name="RebuildCube">
+<Description>
+ガイドでインポートされる3つのキューブの一括再構築用メソッド</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	do ##class(%DeepSee.Utils).%BuildCube("HistoryPerfData")
+	do ##class(%DeepSee.Utils).%BuildCube("DailyCube")
+	do ##class(%DeepSee.Utils).%BuildCube("HourlyCube")
+]]></Implementation>
+</Method>
+
+<Method name="setup">
+<Internal>1</Internal>
+<ClassMethod>1</ClassMethod>
+<CodeMode>objectgenerator</CodeMode>
+<FormalSpec><![CDATA[&pVars,pLogLevel:%Integer=3,pInstaller:%Installer.Installer]]></FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	#; Let our XGL document generate code for this method. 
+	Quit ##class(%Installer.Manifest).%Generate(%compiledclass, %code, "HistoryMonitorSettings")
+]]></Implementation>
+</Method>
+</Class>
+</Export>
