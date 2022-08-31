@@ -1,5 +1,5 @@
 # performance-sample
-![image](https://user-images.githubusercontent.com/24215130/187603613-5ebcad65-253f-4177-8742-4a9ab3b8821a.png)
+![image](https://user-images.githubusercontent.com/24215130/187603733-bf3f60a1-fbbd-4430-99a1-bab0aea3e628.png)
 このサンプルはInterSystemsで正式サポートしているものではありません。ご自身の責任においてご利用くださいますようお願いいたします。  
 また、サンプル公開時の最新IRISバージョンで作成しておりますので、実際に使用されるIRISバージョン毎に動作確認をお願いいたします。  
 
