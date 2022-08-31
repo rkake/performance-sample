@@ -1,4 +1,8 @@
 # performance-sample
+![image](https://user-images.githubusercontent.com/24215130/187603613-5ebcad65-253f-4177-8742-4a9ab3b8821a.png)
+このサンプルはInterSystemsで正式サポートしているものではありません。ご自身の責任においてご利用くださいますようお願いいたします。  
+また、サンプル公開時の最新IRISバージョンで作成しておりますので、実際に使用されるIRISバージョン毎に動作確認をお願いいたします。  
+
 パフォーマンス調査用サンプル
 
 以下の「InterSystems パフォーマンス調査ガイド」内で使用しているサンプルです。
